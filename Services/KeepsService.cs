@@ -25,12 +25,12 @@ namespace Keepr.Services
       return exists;
     }
 
-    public IEnumerable<Keep> GetKeepsByUser(string userId)
-    {
-      Keep keep = _repo.Get(userId);
-      if (keep == null) { throw new Exception("Invalid Id Homie"); }
-      return _repo.GetKeepsByUser(userId);
-    }
+    // public Keep GetKeepsByUser(string userId)
+    // {
+    //   Keep keep = _repo.Get(userId);
+    //   if (keep == null) { throw new Exception("Invalid Id"); }
+    //   return _repo.GetKeepsByUser(userId);
+    // }
     public Keep Create(Keep newKeep)
     {
       int id = _repo.Create(newKeep);
