@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using Keepr.Models;
 using Keepr.Services;
@@ -8,33 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
 {
-  [ApiController]
-  [Route("api/[controller]")]
-
-  public class VaultKeepsController : ControllerBase
+  public class VaultsController : ControllerBase
   {
-    private readonly VaultKeepsService _vs;
+    private readonly VaultsService _vs;
 
-    public VaultKeepsController(VaultKeepsService vs)
+    public VaultsController(VaultsService vs)
     {
       _vs = vs;
     }
 
-    [HttpGet]
-    public ActionResult<IEnumerable<VaultKeeps>> Get()
-    {
-      try
-      {
-        return Ok(_vs.Get());
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
-
     [HttpGet("{id}")]
-    public ActionResult<Keep> Get(int id)
+    public ActionResult<Vault> Get(int id)
     {
       try
       {
@@ -45,14 +28,27 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    [Authorize]
-    [HttpPost]
-    public ActionResult<Keep> Create([FromBody]Keep newKeep)
+
+    [HttpGet("{userId}")]
+    public ActionResult<Vault> GetVaultsByUser(string userId)
     {
       try
       {
-        newKeep.UserId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vs.Create(newKeep));
+        return Ok(_vs.GetVaultsByUser(userId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpPost("{userId}")]
+    public ActionResult<Vault> Create([FromBody]Vault newVault)
+    {
+      try
+      {
+        newVault.UserId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vs.Create(newVault));
       }
       catch (Exception e)
       {
@@ -61,13 +57,13 @@ namespace Keepr.Controllers
     }
 
     [Authorize]
-    [HttpPut("{id}")]
-    public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
+    [HttpPut("{userId}")]
+    public ActionResult<Vault> Edit([FromBody] Keep editVault, string userId)
     {
       try
       {
-        editKeep.Id = id;
-        return Ok(_vs.Edit(editKeep));
+        editVault.UserId = userId;
+        return Ok(_vs.Edit(editVault));
       }
       catch (Exception e)
       {

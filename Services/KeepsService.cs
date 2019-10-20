@@ -25,12 +25,13 @@ namespace Keepr.Services
       return exists;
     }
 
-    // public Keep GetKeepsByUser(string userId)
-    // {
-    //   Keep keep = _repo.Get(userId);
-    //   if (keep == null) { throw new Exception("Invalid Id"); }
-    //   return _repo.GetKeepsByUser(userId);
-    // }
+    public Keep GetKeepsByUser(string userId)
+    {
+      Keep keep = _repo.GetKeepsByUser(userId);
+      if (keep == null) { throw new Exception("Invalid Id"); }
+      return _repo.GetKeepsByUser(userId);
+    }
+
     public Keep Create(Keep newKeep)
     {
       int id = _repo.Create(newKeep);
@@ -45,8 +46,8 @@ namespace Keepr.Services
       keep.Name = editKeep.Name;
       keep.Description = editKeep.Description;
       keep.Img = editKeep.Img;
-      keep.Views = keep.Views;
-      keep.Keeps = keep.Keeps;
+      keep.Views = editKeep.Views;
+      keep.Keeps = editKeep.Keeps;
       keep.IsPrivate = editKeep.IsPrivate;
       _repo.Edit(keep);
       return keep;

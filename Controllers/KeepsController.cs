@@ -45,18 +45,18 @@ namespace KeepsController.Controllers
       }
     }
 
-    // [HttpGet("{userId}")]
-    // public ActionResult<Keep> GetKeepsByUser(string userId)
-    // {
-    //   try
-    //   {
-    //     return Ok(_ks.Get(userId));
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+    [HttpGet("{userId}")]
+    public ActionResult<Keep> GetKeepsByUser(string userId)
+    {
+      try
+      {
+        return Ok(_ks.GetKeepsByUser(userId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
     [Authorize]
     [HttpPost]
