@@ -45,35 +45,36 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-    [Authorize]
-    [HttpPost]
-    public ActionResult<Keep> Create([FromBody]Keep newKeep)
-    {
-      try
-      {
-        newKeep.UserId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vs.Create(newKeep));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
 
-    [Authorize]
-    [HttpPut("{id}")]
-    public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
-    {
-      try
-      {
-        editKeep.Id = id;
-        return Ok(_vs.Edit(editKeep));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    // [Authorize]
+    // [HttpPost]
+    // public ActionResult<Keep> Create([FromBody]Keep newKeep)
+    // {
+    //   try
+    //   {
+    //     newKeep.UserId = HttpContext.User.FindFirstValue("Id");
+    //     return Ok(_vs.Create(newKeep));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
+
+    // [Authorize]
+    // [HttpPut("{id}")]
+    // public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
+    // {
+    //   try
+    //   {
+    //     editKeep.Id = id;
+    //     return Ok(_vs.Edit(editKeep));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
     [Authorize]
     [HttpDelete("{id}")]

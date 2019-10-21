@@ -26,23 +26,23 @@ namespace Keepr.Services
       return exists;
     }
 
-    public VaultKeeps Create(Keep newVaultKeeps)
-    {
-      int id = _repo.Create(newVaultKeeps);
-      newVaultKeeps.Id = id;
-      return newVaultKeeps;
-    }
+    // public VaultKeeps Create(Keep newVaultKeeps)
+    // {
+    //   int id = _repo.Create(newVaultKeeps);
+    //   newVaultKeeps.Id = id;
+    //   return newVaultKeeps;
+    // }
 
-    public VaultKeeps Edit(Keep editVaultKeeps)
-    {
-      VaultKeeps vaultKeeps = _repo.Get(editVaultKeeps.Id);
-      if (vaultKeeps == null) { throw new Exception("Invalid Id"); }
-      vaultKeeps.VaultId = editVaultKeeps.VaultId;
-      vaultKeeps.KeepId = editVaultKeeps.KeepId;
-      vaultKeeps.UserId = editVaultKeeps.UserId;
-      _repo.Edit(vaultKeeps);
-      return vaultKeeps;
-    }
+    // public VaultKeeps Edit(Keep editVaultKeeps)
+    // {
+    //   VaultKeeps vaultKeeps = _repo.Get(editVaultKeeps.Id);
+    //   if (vaultKeeps == null) { throw new Exception("Invalid Id"); }
+    //   vaultKeeps.VaultId = editVaultKeeps.VaultId;
+    //   vaultKeeps.KeepId = editVaultKeeps.KeepId;
+    //   vaultKeeps.UserId = editVaultKeeps.UserId;
+    //   _repo.Edit(vaultKeeps);
+    //   return vaultKeeps;
+    // }
 
     public string Delete(int id)
     {

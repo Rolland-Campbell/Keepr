@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
 {
+  [Authorize]
+  [ApiController]
+  [Route("/api/[controller]")]
+
   public class VaultsController : ControllerBase
   {
     private readonly VaultsService _vs;
@@ -42,7 +46,7 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpPost("{userId}")]
+    [HttpPost]
     public ActionResult<Vault> Create([FromBody]Vault newVault)
     {
       try
@@ -56,20 +60,20 @@ namespace Keepr.Controllers
       }
     }
 
-    [Authorize]
-    [HttpPut("{userId}")]
-    public ActionResult<Vault> Edit([FromBody] Keep editVault, string userId)
-    {
-      try
-      {
-        editVault.UserId = userId;
-        return Ok(_vs.Edit(editVault));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
+    // [Authorize]
+    // [HttpPut("{userId}")]
+    // public ActionResult<Vault> Edit([FromBody] Keep editVault, string userId)
+    // {
+    //   try
+    //   {
+    //     editVault.UserId = userId;
+    //     return Ok(_vs.Edit(editVault));
+    //   }
+    //   catch (Exception e)
+    //   {
+    //     return BadRequest(e.Message);
+    //   }
+    // }
 
     [Authorize]
     [HttpDelete("{id}")]

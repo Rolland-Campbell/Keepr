@@ -45,7 +45,7 @@ namespace KeepsController.Controllers
       }
     }
 
-    [HttpGet("{userId}")]
+    [HttpGet("{userId}/user")]
     public ActionResult<Keep> GetKeepsByUser(string userId)
     {
       try
