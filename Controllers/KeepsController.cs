@@ -76,12 +76,12 @@ namespace KeepsController.Controllers
 
     [Authorize]
     [HttpPut("{id}")]
-    public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
+    public ActionResult<Keep> Edit([FromBody] Keep newKeep, int id)
     {
       try
       {
-        editKeep.Id = id;
-        return Ok(_ks.Edit(editKeep));
+        newKeep.Id = id;
+        return Ok(_ks.Edit(newKeep));
       }
       catch (Exception e)
       {

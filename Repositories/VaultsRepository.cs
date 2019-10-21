@@ -24,7 +24,7 @@ namespace Keepr.Repositories
 
     public IEnumerable<Vault> GetVaultsByUser(string userId)
     {
-      string sql = "SELECT * FROM vaults WHERE id = @UserId";
+      string sql = "SELECT * FROM vaults WHERE userId = @userId";
       return _db.Query<Vault>(sql, new { userId });
     }
 
@@ -37,18 +37,6 @@ namespace Keepr.Repositories
                 (@Name,@Description, @UserId);
                 SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, newVault);
-    }
-
-    public void Edit(Vault vault)
-    {
-      string sql = @"
-                UPDATE vaults
-                SET
-                    name = @Name,
-                    description = @Description,
-                    userId = @UserId,
-                WHERE id = @Id";
-      _db.Execute(sql, vault);
     }
 
     public void Delete(int id)

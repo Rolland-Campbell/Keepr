@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
 {
-  [Authorize]
   [ApiController]
   [Route("/api/[controller]")]
 
@@ -34,13 +33,14 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpGet("user")]
-    public ActionResult<IEnumerable<Vault>> GetVaultsByUser(string userId)
+    [Authorize]
+    [HttpGet]
+    public ActionResult<IEnumerable<Vault>> GetVaultsByUser()
     {
       try
       {
-        var id = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vs.GetVaultsByUser(userId));
+        string id = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vs.GetVaultsByUser(id));
       }
       catch (Exception e)
       {
@@ -48,6 +48,7 @@ namespace Keepr.Controllers
       }
     }
 
+    [Authorize]
     [HttpPost]
     public ActionResult<Vault> Create([FromBody]Vault newVault)
     {
@@ -61,21 +62,6 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
-
-    // [Authorize]
-    // [HttpPut("{userId}")]
-    // public ActionResult<Vault> Edit([FromBody] Keep editVault, string userId)
-    // {
-    //   try
-    //   {
-    //     editVault.UserId = userId;
-    //     return Ok(_vs.Edit(editVault));
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
 
     [Authorize]
     [HttpDelete("{id}")]

@@ -32,17 +32,6 @@ namespace Keepr.Services
       return newVault;
     }
 
-    // public Vault Edit(Vault editVault)
-    // {
-    //   Vault vault = _vr.GetVaultsByUser(editVault.UserId);
-    //   if (vault == null) { throw new Exception("Invalid Id"); }
-    //   vault.Name = editVault.Name;
-    //   vault.Description = editVault.Description;
-    //   vault.UserId = editVault.UserId;
-    //   _vr.Edit(vault);
-    //   return vault;
-    // }
-
     public string Delete(int id)
     {
       Vault exists = _vr.Get(id);

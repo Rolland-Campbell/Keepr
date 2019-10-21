@@ -44,8 +44,10 @@ namespace Keepr.Services
       keep.Name = editKeep.Name;
       keep.Description = editKeep.Description;
       keep.Img = editKeep.Img;
+      keep.UserId = editKeep.UserId;
       keep.Views = editKeep.Views;
       keep.Keeps = editKeep.Keeps;
+      keep.Shares = editKeep.Shares;
       keep.IsPrivate = editKeep.IsPrivate;
       _kr.Edit(keep);
       return keep;

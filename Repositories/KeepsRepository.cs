@@ -51,9 +51,11 @@ namespace Keepr.Repositories
                     name = @Name,
                     description = @Description,
                     img = @Img,
+                    userId = @UserId,
                     isPrivate = @IsPrivate,
                     views = @Views,
                     keeps = @Keeps,
+                    shares = @Shares,
                 WHERE id = @Id";
       _db.Execute(sql, keep);
     }

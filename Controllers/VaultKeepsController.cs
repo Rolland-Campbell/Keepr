@@ -33,19 +33,6 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpGet("{id}")]
-    public ActionResult<Keep> Get(int id)
-    {
-      try
-      {
-        return Ok(_vs.Get(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
-
     // [Authorize]
     // [HttpPost]
     // public ActionResult<Keep> Create([FromBody]Keep newKeep)
@@ -62,32 +49,17 @@ namespace Keepr.Controllers
     // }
 
     // [Authorize]
-    // [HttpPut("{id}")]
-    // public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
+    // [HttpDelete("{id}")]
+    // public ActionResult<string> Delete(int id)
     // {
     //   try
     //   {
-    //     editKeep.Id = id;
-    //     return Ok(_vs.Edit(editKeep));
+    //     return Ok(_vs.Delete(id));
     //   }
     //   catch (Exception e)
     //   {
     //     return BadRequest(e.Message);
     //   }
     // }
-
-    [Authorize]
-    [HttpDelete("{id}")]
-    public ActionResult<string> Delete(int id)
-    {
-      try
-      {
-        return Ok(_vs.Delete(id));
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
   }
 }

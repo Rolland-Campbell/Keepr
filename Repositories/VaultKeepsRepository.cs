@@ -6,27 +6,17 @@ namespace Keepr.Repositories
 {
   public class VaultKeepsRepository
   {
-    internal IEnumerable<VaultKeeps> Get()
+    public IEnumerable<VaultKeeps> Get()
     {
       throw new NotImplementedException();
     }
 
-    internal VaultKeeps Get(int id)
+    public Keep Create(Keep newVaultKeeps)
     {
       throw new NotImplementedException();
     }
 
-    internal int Create(Keep newVaultKeeps)
-    {
-      throw new NotImplementedException();
-    }
-
-    internal void Edit(VaultKeeps vaultKeeps)
-    {
-      throw new NotImplementedException();
-    }
-
-    internal void Delete(int id)
+    public string Delete(int id)
     {
       throw new NotImplementedException();
     }
