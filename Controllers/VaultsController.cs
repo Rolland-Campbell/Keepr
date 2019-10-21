@@ -34,11 +34,12 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpGet("{userId}")]
+    [HttpGet("user")]
     public ActionResult<IEnumerable<Vault>> GetVaultsByUser(string userId)
     {
       try
       {
+        var id = HttpContext.User.FindFirstValue("Id");
         return Ok(_vs.GetVaultsByUser(userId));
       }
       catch (Exception e)

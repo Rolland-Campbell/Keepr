@@ -46,12 +46,12 @@ namespace KeepsController.Controllers
     }
 
     [HttpGet("user")]
-    public ActionResult<IEnumerable<Keep>> GetKeepsByUser(string userId)
+    public ActionResult<IEnumerable<Keep>> GetKeepsByUser()
     {
       try
       {
-        var id = HttpContext.User.FindFirstValue("Id");
-        return Ok(_ks.GetKeepsByUser(userId));
+        string id = HttpContext.User.FindFirstValue("Id");
+        return Ok(_ks.GetKeepsByUser(id));
       }
       catch (Exception e)
       {

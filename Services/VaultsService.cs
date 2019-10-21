@@ -22,8 +22,6 @@ namespace Keepr.Services
     }
     public IEnumerable<Vault> GetVaultsByUser(string userId)
     {
-      Vault vault = _vr.GetVaultsByUser(userId);
-      if (vault == null) { throw new Exception("Invalid Id"); }
       return _vr.GetVaultsByUser(userId);
     }
 
