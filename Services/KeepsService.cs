@@ -27,8 +27,6 @@ namespace Keepr.Services
 
     public IEnumerable<Keep> GetKeepsByUser(string userId)
     {
-      Keep keep = _kr.GetKeepsByUser(userId);
-      if (keep == null) { throw new Exception("Invalid Id"); }
       return _kr.GetKeepsByUser(userId);
     }
 

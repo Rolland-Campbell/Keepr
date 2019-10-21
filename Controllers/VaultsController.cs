@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using Keepr.Models;
 using Keepr.Services;
@@ -34,7 +35,7 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{userId}")]
-    public ActionResult<Vault> GetVaultsByUser(string userId)
+    public ActionResult<IEnumerable<Vault>> GetVaultsByUser(string userId)
     {
       try
       {
