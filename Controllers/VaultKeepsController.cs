@@ -46,7 +46,7 @@ namespace Keepr.Controllers
       }
     }
 
-    [Authorize]
+    //[Authorize]
     [HttpPost]
     public ActionResult<VaultKeeps> Create([FromBody]VaultKeeps newVaultKeep)
     {

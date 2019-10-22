@@ -23,10 +23,10 @@ namespace Keepr.Repositories
     public IEnumerable<Keep> Get(int id)
     {
       string sql = @"
-        SELECT * FROM keeps p
-                JOIN vaultkeeps g
-                    ON p.keepid = g.vaultid
-                WHERE g.id = @id";
+        SELECT * FROM vaultkeeps vk
+            INNER JOIN keeps k ON k.id = vk.keepId
+            WHERE (vaultId = @vaultId AND vk.userId = @userId);
+            ";
       return _db.Query<Keep>(sql, new { id });
     }
 
@@ -37,8 +37,8 @@ namespace Keepr.Repositories
             (vaultId, keepId, userId)
             VALUES
             (@VaultId, @KeepId, @UserId);
-            SELECT LAST_INSERT_ID();
-            ";
+      SELECT LAST_INSERT_ID();
+      ";
       return _db.ExecuteScalar<int>(sql, newVaultKeeps); //get the new id back from line 36 and return to service
 
     }
