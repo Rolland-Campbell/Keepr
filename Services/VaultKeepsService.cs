@@ -8,23 +8,28 @@ namespace Keepr.Services
 
   public class VaultKeepsService
   {
-    private readonly VaultKeepsRepository _repo;
-    public VaultKeepsService(VaultKeepsRepository repo)
+    private readonly VaultKeepsRepository _vkr;
+    public VaultKeepsService(VaultKeepsRepository vkr)
     {
-      _repo = repo;
+      _vkr = vkr;
     }
 
     public IEnumerable<VaultKeeps> Get()
     {
-      return _repo.Get();
+      return _vkr.Get();
     }
 
-    // public VaultKeeps Create(Keep newVaultKeeps)
-    // {
-    //   int id = _repo.Create(newVaultKeeps);
-    //   newVaultKeeps.Id = id;
-    //   return newVaultKeeps;
-    // }
+    public IEnumerable<Keep> Get(int id)
+    {
+      return _vkr.Get(id);
+    }
+
+    public VaultKeeps Create(VaultKeeps newVaultKeeps)
+    {
+      int id = _vkr.Create(newVaultKeeps);
+      newVaultKeeps.Id = id;
+      return newVaultKeeps;
+    }
 
     // public string Delete(int id)
     // {

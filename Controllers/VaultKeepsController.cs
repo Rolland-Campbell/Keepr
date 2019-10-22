@@ -13,11 +13,11 @@ namespace Keepr.Controllers
 
   public class VaultKeepsController : ControllerBase
   {
-    private readonly VaultKeepsService _vs;
+    private readonly VaultKeepsService _vks;
 
-    public VaultKeepsController(VaultKeepsService vs)
+    public VaultKeepsController(VaultKeepsService vks)
     {
-      _vs = vs;
+      _vks = vks;
     }
 
     [HttpGet]
@@ -25,7 +25,7 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vs.Get());
+        return Ok(_vks.Get());
       }
       catch (Exception e)
       {
@@ -33,20 +33,33 @@ namespace Keepr.Controllers
       }
     }
 
-    // [Authorize]
-    // [HttpPost]
-    // public ActionResult<Keep> Create([FromBody]Keep newKeep)
-    // {
-    //   try
-    //   {
-    //     newKeep.UserId = HttpContext.User.FindFirstValue("Id");
-    //     return Ok(_vs.Create(newKeep));
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+    [HttpGet("{id}")]
+    public ActionResult<IEnumerable<Keep>> Get(int id)
+    {
+      try
+      {
+        return Ok(_vks.Get(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [Authorize]
+    [HttpPost]
+    public ActionResult<VaultKeeps> Create([FromBody]VaultKeeps newVaultKeep)
+    {
+      try
+      {
+        newVaultKeep.UserId = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vks.Create(newVaultKeep));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
     // [Authorize]
     // [HttpDelete("{id}")]
