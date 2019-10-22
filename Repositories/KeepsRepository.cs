@@ -55,8 +55,8 @@ namespace Keepr.Repositories
                     isPrivate = @IsPrivate,
                     views = @Views,
                     keeps = @Keeps,
-                    shares = @Shares,
-                WHERE id = @Id";
+                    shares = @Shares
+                WHERE id = @id";
       _db.Execute(sql, keep);
     }
 
