@@ -1,16 +1,16 @@
 <template>
   <div class="home container-fluid">
-    <div class="row">
-      <h1>Welcome Home {{user.username}}</h1>
+    <div class="row justify-content-center">
+      <h1 class="pr-2">Welcome Home {{user.username}}</h1>
       <button v-if="user.id" @click="logout">logout</button>
       <router-link v-else :to="{name: 'login'}">Login</router-link>
     </div>
     <hr />
-    <div class="row">
-      <keep v-for="keep in keeps" :keepProp="keep" :key="keep._id" />
-      <div class="col-12 pt-5">
-        <button class="btn btn-primary" data-toggle="modal" data-target>Add</button>
-      </div>
+    <div class="row pb-1 justify-content-center">
+      <button class="btn btn-primary" data-toggle="modal" data-target>Add a Keepr</button>
+    </div>
+    <div class="row justify-content-center">
+      <keep v-for="keep in keeps" :keepProp="keep" :key="keep._id" class="m-1" />
     </div>
   </div>
 </template>
