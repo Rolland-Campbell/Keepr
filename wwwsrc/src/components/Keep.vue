@@ -33,6 +33,9 @@ export default {
     },
     vaults() {
       return this.$store.state.vaults;
+    },
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps;
     }
   },
   methods: {
@@ -40,8 +43,8 @@ export default {
       this.$store.dispatch("deleteKeep", this.keepProp.id);
     },
     addToVault() {
-      this.$store.dispatch("addToVault", this.vaults.id);
-      this.vaults = {};
+      this.$store.dispatch("addToVault", this.vaultKeeps);
+      this.vaultKeeps = {};
     }
   },
   components: {}

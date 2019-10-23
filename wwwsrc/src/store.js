@@ -34,6 +34,9 @@ export default new Vuex.Store({
     },
     setVaults(state, vaults) {
       state.vaults = vaults
+    },
+    setVaultKeeps(state, vaultKeeps) {
+      state.vaultkeeps = vaultKeeps
     }
   },
   actions: {
@@ -77,6 +80,14 @@ export default new Vuex.Store({
       try {
         let res = await api.get('vaults')
         commit('setVaults', res.data)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getVaultKeeps({ commit, dispatch }) {
+      try {
+        let res = await api.get('vaultKeeps')
+        commit('setVaultKeeps', res.data)
       } catch (error) {
         console.error(error)
       }

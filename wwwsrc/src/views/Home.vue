@@ -40,6 +40,9 @@ import AddKeepModal from "../components/AddKeepModal";
 import AddVaultModal from "../components/AddVaultModal";
 export default {
   name: "home",
+  data() {
+    return {};
+  },
   computed: {
     user() {
       return this.$store.state.user;
@@ -49,11 +52,15 @@ export default {
     },
     vaults() {
       return this.$store.state.vaults;
+    },
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps;
     }
   },
   mounted() {
     this.$store.dispatch("getAllKeeps");
     this.$store.dispatch("getAllVaults");
+    this.$store.dispatch("getVaultKeeps");
   },
   methods: {
     logout() {

@@ -31,14 +31,14 @@ namespace Keepr.Services
       return newVaultKeeps;
     }
 
-    public string Delete(VaultKeeps vk, string userId)
-    {
-      if (vk == null || vk.UserId != userId)
-      {
-        throw new Exception("invalid Id");
-      }
-      _vkr.Delete(vk);
-      return "Success";
-    }
+    // public string Delete(VaultKeeps vk, string userId)
+    // {
+    //   if (vk == null || vk.UserId != userId)
+    //   {
+    //     throw new Exception("invalid Id");
+    //   }
+    //   _vkr.Delete(vk);
+    //   return "Success";
+    // }
   }
 }

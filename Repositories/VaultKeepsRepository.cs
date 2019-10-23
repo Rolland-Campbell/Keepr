@@ -17,7 +17,8 @@ namespace Keepr.Repositories
 
     public IEnumerable<VaultKeeps> Get()
     {
-      throw new NotImplementedException();
+      string sql = "SELECT * FROM vaultKeeps";
+      return _db.Query<VaultKeeps>(sql);
     }
 
     public IEnumerable<Keep> Get(int id, string userId)
@@ -43,10 +44,10 @@ namespace Keepr.Repositories
 
     }
 
-    public void Delete(VaultKeeps vk)
-    {
-      string sql = "DELETE from vaultkeeps WHERE vaultId = @vaultid AND keepId = @keepId";
-      _db.Execute(sql, vk);
-    }
+    // public void Delete(VaultKeeps vk)
+    // {
+    //   string sql = "DELETE from vaultkeeps WHERE vaultId = @vaultid AND keepId = @keepId";
+    //   _db.Execute(sql, vk);
+    // }
   }
 }
