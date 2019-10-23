@@ -54,7 +54,7 @@ export default {
       return this.$store.state.vaults;
     },
     vaultKeeps() {
-      return this.$store.state.vaultKeeps;
+      return this.$store.state.vaultkeeps;
     }
   },
   mounted() {

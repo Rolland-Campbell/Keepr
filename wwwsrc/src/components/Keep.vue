@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;" @click="viewKeep()">
     <img :src="keepProp.img" class="card-img-top" alt="..." />
     <div class="card-body">
       <h5 class="card-title">{{keepProp.name}}</h5>
@@ -45,6 +45,17 @@ export default {
     addToVault() {
       this.$store.dispatch("addToVault", this.vaultKeeps);
       this.vaultKeeps = {};
+    },
+    viewKeep() {
+      this.$router.push({
+        name: "viewKeep",
+        params: {
+          id: this.keepProp.id,
+          img: this.keepProp.img,
+          name: this.keepProp.name
+        }
+      });
+      this.$store.dispatch("editKeep");
     }
   },
   components: {}
