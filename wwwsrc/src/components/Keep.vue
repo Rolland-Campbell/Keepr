@@ -36,12 +36,12 @@ export default {
     }
   },
   methods: {
-    viewKeep() {},
     deleteKeep() {
       this.$store.dispatch("deleteKeep", this.keepProp.id);
     },
     addToVault() {
       this.$store.dispatch("addToVault", this.vaults.id);
+      this.vaults = {};
     }
   },
   components: {}

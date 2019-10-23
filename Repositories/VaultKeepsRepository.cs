@@ -20,14 +20,14 @@ namespace Keepr.Repositories
       throw new NotImplementedException();
     }
 
-    public IEnumerable<Keep> Get(int id)
+    public IEnumerable<Keep> Get(int id, string userId)
     {
       string sql = @"
         SELECT * FROM vaultkeeps vk
             INNER JOIN keeps k ON k.id = vk.keepId
-            WHERE (vaultId = @vaultId AND vk.userId = @userId);
+            WHERE (vaultId = @id AND vk.userId = @userId);
             ";
-      return _db.Query<Keep>(sql, new { id });
+      return _db.Query<Keep>(sql, new { id, userId });
     }
 
     public int Create(VaultKeeps newVaultKeeps)
@@ -43,9 +43,10 @@ namespace Keepr.Repositories
 
     }
 
-    public string Delete(int id)
+    public void Delete(VaultKeeps vk)
     {
-      throw new NotImplementedException();
+      string sql = "DELETE from vaultkeeps WHERE vaultId = @vaultid AND keepId = @keepId";
+      _db.Execute(sql, vk);
     }
   }
 }

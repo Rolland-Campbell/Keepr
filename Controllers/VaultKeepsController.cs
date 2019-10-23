@@ -38,7 +38,8 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vks.Get(id));
+        string userId = HttpContext.User.FindFirstValue("id");
+        return Ok(_vks.Get(id, userId));
       }
       catch (Exception e)
       {
@@ -61,18 +62,19 @@ namespace Keepr.Controllers
       }
     }
 
-    // [Authorize]
-    // [HttpDelete("{id}")]
-    // public ActionResult<string> Delete(int id)
-    // {
-    //   try
-    //   {
-    //     return Ok(_vs.Delete(id));
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     return BadRequest(e.Message);
-    //   }
-    // }
+    [Authorize]
+    [HttpPut]
+    public ActionResult<VaultKeeps> Delete([FromBody] VaultKeeps vaultKeep)
+    {
+      try
+      {
+        vaultKeep.UserId = HttpContext.User.FindFirstValue("id");
+        return Ok(_vks.Delete(vaultKeep, vaultKeep.UserId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
