@@ -92,7 +92,6 @@ export default new Vuex.Store({
       try {
         //  let data = await api.put(`/keeps/${payload.id}`)
         let data = await api.get(`/keeps/${payload}`).then(res => {
-          debugger
           res.data.views++
           api.put("keeps/" + payload, res.data)
           commit('setActiveKeep', res.data)
@@ -151,7 +150,6 @@ export default new Vuex.Store({
     },
     async addToVault({ commit, dispatch }, payload) {
       try {
-        debugger
         await api.post('vaultKeeps', payload)
         api.get(`keeps/${payload.keepId}`).then(res => {
           res.data.keeps++
