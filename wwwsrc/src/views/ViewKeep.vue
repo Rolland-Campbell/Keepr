@@ -3,6 +3,9 @@
     <button type="button" class="btn btn-primary" @click="Back()">Back</button>
     <h1>{{this.activeKeep.name}}</h1>
     <img :src="this.activeKeep.img" alt=".." />
+    <h5>Views : {{this.activeKeep.views}}</h5>
+    <h5>Keeps : {{this.activeKeep.keeps}}</h5>
+    <br />
   </div>
 </template>
 
@@ -14,12 +17,7 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    let payload = {
-      id: this.$route.params.id
-    };
-    this.$store.dispatch("getKeepById", payload);
-  },
+  mounted() {},
   computed: {
     activeKeep() {
       return this.$store.state.activekeep;

@@ -16,8 +16,15 @@
       <p v-else>Already have an account click to Login</p>
     </div>
     <hr />
+    <h5>Check out these Keeprs Log in or register to keep pictures</h5>
     <div class="row">
-      <previewkeep v-for="keep in keeps" :keepProp="keep" :key="keep._id" class="m-4" />
+      <previewkeep
+        v-for="keep in keeps"
+        v-if="keep.isPrivate == false"
+        :keepProp="keep"
+        :key="keep._id"
+        class="m-4"
+      />
     </div>
   </div>
 </template>

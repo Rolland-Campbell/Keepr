@@ -47,6 +47,15 @@
                 v-model="newKeep.img"
               />
             </div>
+            <div class="form-group form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+                v-model="newKeep.isPrivate"
+              />
+              <label class="form-check-label" for="exampleCheck1">Make Private</label>
+            </div>
             <button type="submit" class="btn btn-primary" @click="addKeep()">Submit</button>
           </form>
         </div>

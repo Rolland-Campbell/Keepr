@@ -53,10 +53,10 @@ namespace Keepr.Services
       return keep;
     }
 
-    public string Delete(int id)
+    public string Delete(int id, string userId)
     {
-      Keep exists = _kr.Get(id);
-      if (exists == null) { throw new Exception("Invalid Id"); }
+      Keep keep = _kr.Get(id);
+      if (keep == null || keep.UserId != userId) { throw new Exception("Invalid Id"); }
       _kr.Delete(id);
       return " unkept man";
     }

@@ -72,3 +72,5 @@
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;
 -- DROP TABLE IF EXISTS users;
+
+-- UPDATE keeps SET isPrivate = false;

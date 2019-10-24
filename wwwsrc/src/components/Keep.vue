@@ -4,15 +4,19 @@
     <div class="card-body">
       <h5 class="card-title">{{keepProp.name}}</h5>
       <p class="card-text">{{keepProp.description}}</p>
+      <p>Views : {{keepProp.views}}</p>
+      <p>Keeps : {{keepProp.keeps}}</p>
+      <p>Private : {{keepProp.isPrivate}}</p>
       <button type="button" class="btn btn-danger" @click="deleteKeep()">Delete</button>
       <div>
         <select
           class="custom-select col-sm-12 col-md-6 mt-2"
           id="inlineFormCustomSelect"
           @change="addToVault($event)"
+          v-model="vaultId"
         >
           <option selected>Vault</option>
-          <option v-for="vault in vaults" :key="vault.id">{{vault.name}}</option>
+          <option v-for="vault in vaults" :key="vault.id" :value="vault.id">{{vault.name}}</option>
         </select>
       </div>
     </div>
@@ -23,10 +27,11 @@
 <script>
 export default {
   name: "Keep",
-  props: ["keepProp", "vaultProp"],
+  props: ["keepProp"],
   data() {
     return {
-      keepsToVault: {}
+      vaultId: ""
+      //keepToVault: { vaultId: this.vaultId, keepId: this.keepProp.id }
     };
   },
   computed: {
@@ -38,6 +43,9 @@ export default {
     },
     vaultKeeps() {
       return this.$store.state.vaultKeeps;
+    },
+    user() {
+      return this.$store.state.user;
     }
   },
   methods: {
@@ -45,14 +53,12 @@ export default {
       this.$store.dispatch("deleteKeep", this.keepProp.id);
     },
     addToVault() {
-      this.$store.dispatch("addToVault", this.keepsToVault);
-      this.keepsToVault = {
-        keepId: this.keepProp.id,
-        vaultId: this.vaults.id,
-        userId: this.keepProp.userId
-      };
+      let keepToVault = { vaultId: this.vaultId, keepId: this.keepProp.id };
+      this.$store.dispatch("addToVault", keepToVault);
+      this.$store.dispatch("getAllKeeps");
     },
     viewKeep() {
+      this.$store.dispatch("getKeepById", this.keepProp.id);
       this.$router.push({
         name: "viewKeep",
         params: {
@@ -62,7 +68,6 @@ export default {
           views: this.keepProp.views
         }
       });
-      //this.$store.dispatch("editKeep");
     }
   },
   components: {}

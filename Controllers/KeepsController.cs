@@ -95,7 +95,8 @@ namespace KeepsController.Controllers
     {
       try
       {
-        return Ok(_ks.Delete(id));
+        string userId = HttpContext.User.FindFirstValue("id");
+        return Ok(_ks.Delete(id, userId));
       }
       catch (Exception e)
       {

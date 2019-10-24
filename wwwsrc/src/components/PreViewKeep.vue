@@ -1,6 +1,8 @@
 <template>
   <div class="card" style="width: 18rem;">
     <img :src="keepProp.img" class="card-img-top" alt="..." />
+    <p>Views : {{keepProp.views}}</p>
+    <p>Keeps : {{keepProp.keeps}}</p>
   </div>
 </template>
 

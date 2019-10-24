@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-primary" @click="Back()">Back</button>
     <hr />
     <div class="row justify-content-center">
-      <vaultkeep v-for="keep in vaultkeeps" :keepProp="keep" :key="keep._id" class="m-1" />
+      <keep v-for="keep in vaultkeeps" :keepProp="keep" :key="keep._id" class="m-1" />
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     activeVaults() {
       return this.$store.state.activevault;
     },
-    keepsInVault() {
+    vaultkeeps() {
       return this.$store.state.keepsinvault;
     }
   },

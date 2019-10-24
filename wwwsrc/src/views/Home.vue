@@ -26,9 +26,24 @@
       <vault v-for="vault in vaults" :vaultProp="vault" :key="vault._id" class="m-1" />
     </div>
     <hr />
-    <h2>Your Creations</h2>
+    <h2>Keeps to Keep</h2>
     <div class="row justify-content-center">
-      <keep v-for="keep in keeps" :keepProp="keep" :key="keep._id" class="m-1" />
+      <keep
+        v-for="keep in keeps"
+        v-if="keep.isPrivate == false"
+        :keepProp="keep"
+        :key="keep._id"
+        class="m-1"
+      />
+    </div>
+    <div class="row justify-content-center">
+      <keep
+        v-for="keep in keeps"
+        v-if="keep.isPrivate == true && keep.userId == user.id"
+        :keepProp="keep"
+        :key="keep._id"
+        class="m-1"
+      />
     </div>
   </div>
 </template>
@@ -40,6 +55,7 @@ import AddKeepModal from "../components/AddKeepModal";
 import AddVaultModal from "../components/AddVaultModal";
 export default {
   name: "home",
+  props: ["userProp"],
   data() {
     return {};
   },
