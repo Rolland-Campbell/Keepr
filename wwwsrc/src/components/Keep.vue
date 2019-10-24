@@ -1,6 +1,6 @@
 <template>
-  <div class="card" style="width: 18rem;" @click="viewKeep()">
-    <img :src="keepProp.img" class="card-img-top" alt="..." />
+  <div class="card" style="width: 18rem;">
+    <img :src="keepProp.img" class="card-img-top" alt="..." @click="viewKeep()" />
     <div class="card-body">
       <h5 class="card-title">{{keepProp.name}}</h5>
       <p class="card-text">{{keepProp.description}}</p>
@@ -25,7 +25,9 @@ export default {
   name: "Keep",
   props: ["keepProp", "vaultProp"],
   data() {
-    return {};
+    return {
+      keepsToVault: {}
+    };
   },
   computed: {
     keep() {
@@ -43,8 +45,12 @@ export default {
       this.$store.dispatch("deleteKeep", this.keepProp.id);
     },
     addToVault() {
-      this.$store.dispatch("addToVault", this.vaultKeeps);
-      this.vaultKeeps = {};
+      this.$store.dispatch("addToVault", this.keepsToVault);
+      this.keepsToVault = {
+        keepId: this.keepProp.id,
+        vaultId: this.vaults.id,
+        userId: this.keepProp.userId
+      };
     },
     viewKeep() {
       this.$router.push({
@@ -52,10 +58,11 @@ export default {
         params: {
           id: this.keepProp.id,
           img: this.keepProp.img,
-          name: this.keepProp.name
+          name: this.keepProp.name,
+          views: this.keepProp.views
         }
       });
-      this.$store.dispatch("editKeep");
+      //this.$store.dispatch("editKeep");
     }
   },
   components: {}

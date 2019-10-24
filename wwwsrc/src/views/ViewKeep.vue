@@ -1,5 +1,6 @@
 <template>
   <div class="viewKeep">
+    <button type="button" class="btn btn-primary" @click="Back()">Back</button>
     <h1>{{this.activeKeep.name}}</h1>
     <img :src="this.activeKeep.img" alt=".." />
   </div>
@@ -7,6 +8,7 @@
 
 
 <script>
+import router from "../router";
 export default {
   name: "viewKeep",
   data() {
@@ -23,7 +25,11 @@ export default {
       return this.$store.state.activekeep;
     }
   },
-  methods: {},
+  methods: {
+    Back() {
+      router.push({ name: "home" });
+    }
+  },
   components: {}
 };
 </script>

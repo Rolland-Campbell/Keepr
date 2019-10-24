@@ -2,6 +2,7 @@
   <div class="vault">
     <h1>Vault name: {{this.activeVaults.name}}</h1>
     <h3>{{this.activeVaults.description}}</h3>
+    <button type="button" class="btn btn-primary" @click="Back()">Back</button>
     <hr />
     <div class="row justify-content-center">
       <vaultkeep v-for="keep in vaultkeeps" :keepProp="keep" :key="keep._id" class="m-1" />
@@ -12,17 +13,18 @@
 
 <script>
 import keep from "../components/Keep";
+import router from "../router";
 export default {
   name: "vault",
   data() {
     return {};
   },
   computed: {
-    vaultkeeps() {
-      return this.$store.state.vaultkeeps;
-    },
     activeVaults() {
       return this.$store.state.activevault;
+    },
+    keepsInVault() {
+      return this.$store.state.keepsinvault;
     }
   },
   mounted() {
@@ -30,8 +32,13 @@ export default {
       id: this.$route.params.vaultId
     };
     this.$store.dispatch("getVaultById", payload);
+    this.$store.dispatch("getKeepsByVaultId", payload);
   },
-  methods: {},
+  methods: {
+    Back() {
+      router.push({ name: "home" });
+    }
+  },
   components: { keep }
 };
 </script>
