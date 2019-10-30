@@ -7,13 +7,26 @@
       <p>Views : {{keepProp.views}}</p>
       <p>Keeps : {{keepProp.keeps}}</p>
       <p>Private : {{keepProp.isPrivate}}</p>
-      <button type="button" class="btn btn-danger" @click="deleteKeep()">Delete</button>
+      <button
+        type="button"
+        class="btn btn-danger"
+        v-if="$route.name == 'vault'"
+        @click="deleteFromVault()"
+      >Remove from Vault</button>
+
+      <button
+        v-if="$route.name != 'vault'"
+        type="button"
+        class="btn btn-danger"
+        @click="deleteKeep()"
+      >Delete</button>
       <div>
         <select
           class="custom-select col-sm-12 col-md-6 mt-2"
           id="inlineFormCustomSelect"
           @change="addToVault($event)"
           v-model="vaultId"
+          v-if="$route.name != 'vault'"
         >
           <option selected>Vault</option>
           <option v-for="vault in vaults" :key="vault.id" :value="vault.id">{{vault.name}}</option>
@@ -31,7 +44,6 @@ export default {
   data() {
     return {
       vaultId: ""
-      //keepToVault: { vaultId: this.vaultId, keepId: this.keepProp.id }
     };
   },
   computed: {
@@ -51,6 +63,14 @@ export default {
   methods: {
     deleteKeep() {
       this.$store.dispatch("deleteKeep", this.keepProp.id);
+    },
+    deleteFromVault() {
+      let keepIdvaultId = {
+        userId: this.user.id,
+        vaultId: this.$route.params.vaultId,
+        keepId: this.keepProp.id
+      };
+      this.$store.dispatch("deleteFromVault", keepIdvaultId);
     },
     addToVault() {
       let keepToVault = { vaultId: this.vaultId, keepId: this.keepProp.id };

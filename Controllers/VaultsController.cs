@@ -69,7 +69,8 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vs.Delete(id));
+        string userId = HttpContext.User.FindFirstValue("id");
+        return Ok(_vs.Delete(id, userId));
       }
       catch (Exception e)
       {

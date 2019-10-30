@@ -44,10 +44,10 @@ namespace Keepr.Repositories
 
     }
 
-    // public void Delete(VaultKeeps vk)
-    // {
-    //   string sql = "DELETE from vaultkeeps WHERE vaultId = @vaultid AND keepId = @keepId";
-    //   _db.Execute(sql, vk);
-    // }
+    public void Delete(VaultKeeps vk)
+    {
+      string sql = "DELETE from vaultkeeps WHERE vaultId = @vaultid AND keepId = @keepId";
+      _db.Execute(sql, vk);
+    }
   }
 }

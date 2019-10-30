@@ -16,7 +16,7 @@
       <p v-else>Already have an account click to Login</p>
     </div>
     <hr />
-    <h5>Check out these Keeprs Log in or register to keep pictures</h5>
+    <h5>Check out these Keeprs!! Log in or register to keep pictures</h5>
     <div class="row">
       <previewkeep
         v-for="keep in keeps"

@@ -24,9 +24,10 @@ export default new Router({
       component: Home
     },
     {
-      path: '/vault',
+      path: '/vault/:vaultId',
       name: 'vault',
-      component: Vault
+      component: Vault,
+      props: true
     },
     {
       path: '/viewKeep',

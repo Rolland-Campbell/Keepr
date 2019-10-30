@@ -32,10 +32,10 @@ namespace Keepr.Services
       return newVault;
     }
 
-    public string Delete(int id)
+    public string Delete(int id, string userId)
     {
       Vault exists = _vr.Get(id);
-      if (exists == null) { throw new Exception("Invalid Id"); }
+      if (exists == null || exists.UserId != userId) { throw new Exception("Invalid Id"); }
       _vr.Delete(id);
       return " unkept man";
     }
